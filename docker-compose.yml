@@ -1,0 +1,24 @@
+version: '3'
+services:
+  flask:
+    build: .
+    command: gunicorn -w 4 -b 0.0.0.0:5000 main:app --reload
+    #command: flask run --host=0.0.0.0
+    restart: always
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_DEBUG=1
+      - PYTHONUNBUFFERED=True
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./:/root
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - pddata:/var/lib/postgresql/test_db
+    ports:
+      - "5432:5432"
+volumes:
+  pddata:
