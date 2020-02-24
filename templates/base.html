@@ -28,11 +28,15 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <button type="button" class="btn btn-secondary">
-                    <a class="text-light" href="/logout">logout</a>
-                </button>
-                {% if current_user %}
-                    <button type="button" class="btn btn-secondary">
+                    {% if current_user.is_active %}
+                        <a class="text-light" href="/logout">logout ({{current_user.login}})</a>
+                    {% else %}
                         <a class="text-light" href="/login">login</a>
+                    {% endif %}
+                </button>
+                {% if current_user.has_role("admin") %}
+                    <button type="button" class="btn btn-secondary">
+                        <a class="text-light" href="/admin">Admin</a>
                     </button>
                 {% endif %}
             </nav>
