@@ -24,3 +24,8 @@ psql test_db
 exit
 ls
 exit
+ls
+exit
+python
+ls
+exit

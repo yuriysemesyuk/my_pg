@@ -1,1 +1,5 @@
+*.log
+.python_history
+migrations/versions/__pycache__/5f9ed1594dd2_.cpython-36.pyc
+migrations/versions/__pycache__/ffe2bed22b64_.cpython-36.pyc
 *.
