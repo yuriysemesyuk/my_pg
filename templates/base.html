@@ -2,11 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
           crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static/css/static.css">
     <link rel="shortcut icon" href="static/images/icon.png" type="image/x-icon">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/static/css/static.css">
     <title>
         {% block title %}
 
@@ -14,45 +24,38 @@
     </title>
 </head>
 <body>
-        <div class="pos-f-t">
-            <div class="collapse" id="navbarToggleExternalContent">
-                <div class="bg-dark p-4">
-                    <h5 class="text-white h4">Collapsed content</h5>
-                    <span class="text-muted">Toggleable via the navbar brand.</span>
-                </div>
-            </div>
-            <nav class="navbar navbar-dark bg-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse"
-                        data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+
+        {% block content %}
+
+        {% endblock %}
+<div class="fixed-bottom">
+    <nav class="navbar navbar-dark bg-dark">
+        <div class="btn-group dropup">
+            {% if current_user.is_active %}
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"aria-haspopup="true" aria-expanded="false">
+                    MENU
                 </button>
-                <button type="button" class="btn btn-secondary">
-                    {% if current_user.is_active %}
-                        <a class="text-light" href="/logout">logout ({{current_user.login}})</a>
-                    {% else %}
-                        <a class="text-light" href="/login">login</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/">home</a>
+                    <a class="dropdown-item" href="/user_page/service">Services</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                    <div class="dropdown-divider"></div>
+                    {% if current_user.has_role("admin") %}
+                        <a class="dropdown-item" href="/admin">Admin</a>
                     {% endif %}
+                    {% if current_user.is_active %}
+                        <a class="dropdown-item" href="/logout">logout ({{current_user.login}})</a>
+                    {% endif %}
+            {% else %}
+                <button type="button" class="btn btn-success">
+                    <center>
+                        <a class="dropdown-item" href="/register">Registration</a>
+                    </center>
                 </button>
-                {% if current_user.has_role("admin") %}
-                    <button type="button" class="btn btn-secondary">
-                        <a class="text-light" href="/admin">Admin</a>
-                    </button>
-                {% endif %}
-            </nav>
+            {% endif %}
         </div>
-    </div>
-
-    <div class="container">
-        <div class="column">
-
-                {% block content %}
-                {% endblock %}
-
-                {% block content_footer %}
-                {% endblock %}
-        </div>
-    </div>
+        <span class="badge badge-info">{{ current_user.login }}</span>
+    </nav>
 </div>
 </body>
 </html>

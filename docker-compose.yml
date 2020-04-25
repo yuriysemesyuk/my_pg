@@ -16,8 +16,10 @@ services:
   db:
     image: postgres
     restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
     volumes:
-      - pddata:/var/lib/postgresql/test_db
+      - pddata:/var/lib/postgresql/postgres
     ports:
       - "5432:5432"
 volumes:
