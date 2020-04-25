@@ -8,7 +8,7 @@ from flask_security.core import current_user
 @app.route('/')
 def index():
     if current_user:
-        return redirect("/user_page")
+        return redirect('/user_page')
     return redirect(url_for('security.login'))
 
 

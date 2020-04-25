@@ -29,3 +29,23 @@ exit
 python
 ls
 exit
+ls
+python manage.py db upgrade
+python manage.py db migrate
+ls 
+ls 
+python
+exit
+ls
+python
+exit
+ls
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+ls
+ls
+python
+psql
+postgres
+exit

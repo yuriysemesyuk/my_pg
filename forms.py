@@ -1,4 +1,4 @@
-from wtforms import Form, BooleanField, StringField, PasswordField, validators
+from wtforms import Form, BooleanField, StringField, IntegerField, PasswordField, validators
 
 class RegistrationForm(Form):
     login = StringField('Login', [validators.Length(min=4, max=25)])

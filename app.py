@@ -26,7 +26,7 @@ manager.add_command('db', MigrateCommand)
 
 
 from models import User, Role
-
+from user_page.models import Service
 
 class AdminMixin:
     def is_accessible(self):
@@ -53,7 +53,7 @@ class HomeAdminView(AdminMixin, AdminIndexView):
 admin = Admin(app, 'FlaskApp', url='/', index_view=HomeAdminView(name='Home'))
 admin.add_view(AdminView(User, db.session))
 admin.add_view(AdminView(Role, db.session))
-
+admin.add_view(AdminView(Service, db.session))
 
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
 security = Security(app, user_datastore)
