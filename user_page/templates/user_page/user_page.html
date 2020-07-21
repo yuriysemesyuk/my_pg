@@ -8,29 +8,13 @@
 
 
 {% block content %}
-
-<div id="mainnn" class="container no-gutters">
-    <div class="row inherit" >
-    {% for date in list_calender_finish %}
-        <div class="col">
-            <div class="row sticky-top p-1 bg-success text-white" href="/">
-                {{date[0].date().strftime("%A %d. %B")}}
-            </div>
-            {% for t in range(0, 48) %}
-                {% if date[t].time() >= time_start and date[t].time() < time_finsh %}
-                <div class="row p-1 bg-warning text-dark" href="/">
-                    {{date[t].time().strftime("%H:%M")}}
-                </div>
-                {% endif %}
-            {% endfor %}
-        </div>
+    {% for week in weeks %}
+        <iframe src="beta/{{week}}" frameborder="0" scrolling="yes" onload="resizeIframe(this)" width="100%"></iframe>
     {% endfor %}
-    </div>
-</div>
 {% endblock %}
 
 
-
 {% block content_footer %}
+
 
 {% endblock %}

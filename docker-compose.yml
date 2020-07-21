@@ -13,6 +13,14 @@ services:
       - '5000:5000'
     volumes:
       - ./:/root
+    container_name: flask-app
+
+  nginx:
+    build: nginx
+    ports:
+      - "80:80"
+    container_name: nginx-flask
+
   db:
     image: postgres
     restart: always
@@ -21,6 +29,6 @@ services:
     volumes:
       - pddata:/var/lib/postgresql/postgres
     ports:
-      - "5432:5432"
+      - '5432:5432'
 volumes:
   pddata:

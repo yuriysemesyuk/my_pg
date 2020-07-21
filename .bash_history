@@ -49,3 +49,37 @@ python
 psql
 postgres
 exit
+python
+ls
+exit
+ls
+cd ..
+ls
+lsb_release -a
+cat /etc/issue
+sudo apt-get install certbot python-certbot-nginx
+ls
+cd home/
+ls
+cd ..
+ls
+cd root/
+ls
+sudo apt-get install certbot python-certbot-nginx
+sudo
+apt-get install certbot python-certbot-nginx
+certbot --nginx
+certbot certonly --nginx
+sudo certbot certonly --nginx
+ls
+exit
+apt-get install certbot python-certbot-nginx
+sudo apt-get install certbot python-certbot-nginx
+sudo apt-get install certbot python-certbot-nginx
+apt-get install certbot python-certbot-nginx
+docker ps
+docker ps
+exit
+ls
+python
+exit
