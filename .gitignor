@@ -1,4 +1,6 @@
-.python_histori
-.bash_histori
-.idea
-migration/
+.DS_Store
+.bash_history
+.idea/
+.python_history
+__pycache__/
+migrations/
