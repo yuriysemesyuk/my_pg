@@ -22,7 +22,8 @@ def register():
     if request.method == 'POST' and form.validate():
         user = User(login=form.login.data,
                     email=form.email.data,
-                    password=form.password.data)
+                    password=form.password.data,
+                    active=True)
         db.session.add(user)
         db.session.commit()
         flash('Thanks for registering')

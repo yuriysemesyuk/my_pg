@@ -83,3 +83,14 @@ exit
 ls
 python
 exit
+python amnage.py db init 
+python manage.py db init 
+python manage.py db migrate
+python manage.py db upgrade
+python manage.py db migrate
+python manage.py db upgrade
+exit
+python manage.py db upgrade
+python manage.py db migrate
+python manage.py db upgrade
+exit
