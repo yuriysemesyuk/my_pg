@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+
+{% endblock %} | Flask app
+
+
+
+{% block content %}
+    {% for week in weeks %}
+        <iframe src="beta/{{week}}" frameborder="0" scrolling="yes" onload="resizeIframe(this)" width="100%"></iframe>
+    {% endfor %}
+{% endblock %}
+
+
+{% block content_footer %}
+
+
+{% endblock %}

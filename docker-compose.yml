@@ -1,0 +1,33 @@
+version: '3'
+services:
+  flask:
+    build: .
+    command: gunicorn -w 4 -b 0.0.0.0:5000 main:app
+    restart: always
+    environment:
+      - FLASK_APP=main.py
+      - FLASK_DEBUG=1
+      - PYTHONUNBUFFERED=True
+    ports:
+      - '5000:5000'
+    volumes:
+      - ./:/root
+    container_name: flask-app
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    container_name: nginx-flask
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    volumes:
+      - pddata:/var/lib/postgresql/postgres
+    ports:
+      - '5432:5432'
+volumes:
+  pddata:

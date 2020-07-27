@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% endblock %} | Flask app
+
+
+{% block content %}
+    <li class="list-group-item">SERVICES</li>
+
+    {% for service in services %}
+    <li class="list-group-item list-group-item-danger">
+        {{service.id_service}}
+        {{service.name_service}}
+        {{service.service_time}}
+        {{service.prise_service}}
+    </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
