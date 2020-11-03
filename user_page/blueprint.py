@@ -91,6 +91,6 @@ def add_service():
         db.session.add(service)
         db.session.commit()
         flash('Thanks for registering')
-        print("yes")#return redirect('service')
+        return redirect('service')
         #return redirect(url_for('security.login'))
     return render_template('user_page/add_service.html', form=form)

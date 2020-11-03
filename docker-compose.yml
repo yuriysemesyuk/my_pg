@@ -15,19 +15,31 @@ services:
     container_name: flask-app
 
   nginx:
-    build: ./nginx
+    image: nginx:latest
     ports:
       - "80:80"
-    container_name: nginx-flask
-
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_HOST_AUTH_METHOD: trust
+      - "443:443"
     volumes:
-      - pddata:/var/lib/postgresql/postgres
-    ports:
-      - '5432:5432'
+      - ./data/nginx:/etc/nginx/conf.d
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./data/certbot/conf:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+#  db:
+#    image: postgres
+#    restart: always
+#    environment:
+#      POSTGRES_HOST_AUTH_METHOD: trust
+#    volumes:
+#      - pddata:/var/lib/postgresql/postgres
+#    ports:
+#      - '5432:5432'
 volumes:
+
   pddata:
